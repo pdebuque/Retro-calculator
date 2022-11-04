@@ -129,3 +129,7 @@ body {
 #clear-history:active {
     transform: translate(0px, 2px);
 }
+
+.rerun-btn-img {
+    height: 15px;
+}

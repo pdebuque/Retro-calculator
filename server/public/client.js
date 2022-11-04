@@ -8,6 +8,14 @@ function onReady() {
     $('#equal').on('click', clickEqual);
     $('#clear').on('click', clear);
     $('#clear-history').on('click', clearHistory);
+    $('#history').on('click', '.rerun-btn', () => {
+        postEqual({
+            num1: ,
+            num2: ,
+            operatior: ,
+            inputField: ''
+        })
+    })
 }
 
 // ------------------------------------------ CLIENT-SIDE CALC FUNCTIONALITY -------------------------------
@@ -24,13 +32,12 @@ const operators = ['/', '*', '+', '-']
 function clickNumber() {
     // after operator entry, need to clear the inputField
 
-    if (operators.includes(calcState.inputField)) {
+    if (operators.includes(calcState.inputField)) {// this is hacky. i'd like to find a different way
         calcState.inputField = '';
         renderInput()
     }
 
     if (calcState.inputField.length < 8) {
-        console.log('in clickNumber()');
         calcState.inputField += $(this).data().val;
         console.log(calcState.inputField)
         renderInput();
@@ -44,11 +51,9 @@ function renderInput() {
 
 // upon clicking an operator, save the inputfield as num1, clear the results input, replace with the operation at hand, 
 function setOperator() {
-    console.log('in setOperator()');
     calcState.num1 = calcState.inputField;
     calcState.inputField = $(this).data().symbol;
     calcState.operator = $(this).data().operator;
-    console.log('current state: ', calcState);
     renderInput();
 }
 
@@ -56,12 +61,28 @@ function clickEqual() {
     // save inputField as num2 and clear inputField
     calcState.num2 = calcState.inputField;
     calcState.inputField = ''
-
+    console.log('sending operation: ', calcState)
     renderInput()
     // with everything packaged, send to postEqual
     postEqual(calcState);
 }
 
+// create a state equal to the corresponding values, then run postEqual
+function historyRerun() {
+    console.log('in historyRerun()');
+    const historyText = $(this).next.text();
+    console.log('corresponding text: ', historyText)
+
+    const historyState = {
+        num1: '',
+        num2: '',
+        operator: '',
+        inputField: 
+}
+
+
+    postEqual(historyState);
+}
 
 function clear() {
     // set input field to zero, set all values to zero, render
@@ -111,15 +132,16 @@ function postEqual(state) {
 
 // this function sends a GET request to the server, which has calculated the result
 function getResult() {
-    console.log('in getResults()')
+
+    console.log('in getResults()');
     $.ajax({
         type: 'GET',
         url: '/calculate'
     }).then((res) => {
-        console.log('successfully received data')
-        renderDisplay(res)
+        console.log('successfully received data');
+        renderDisplay(res);
     }).catch((err) => {
-        console.log('something went wrong: ', err)
+        console.log('getResult went wrong: ', err);
     })
 
 }
@@ -131,6 +153,7 @@ function clearHistory() {
         url: 'calculate'
     }).then((res) => {
         console.log('successfully cleared history');
+        getResult();
     }).catch((err) => {
         console.log('could not delete: ', err)
     })
@@ -145,15 +168,21 @@ function clearHistory() {
 // }
 
 function renderDisplay(array) {
-    $('#number-field').html(array[array.length - 1].result);
     $('#history').empty();
+    if (array.length) {
+        $('#number-field').html(array[array.length - 1].result);
 
-    for (let calculation of array) {
-        $('#history').append(`
-        <div>
+
+        for (let calculation of array) {
+            $('#history').append(`
+        <div class="operation-container>
+            <button class = "rerun-btn"><img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon"></button>
+            <span class = "past-operation">
             ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${calculation.result}
+            </span>
         </div>    
             `);
+        }
 
     }
 }
@@ -165,9 +194,11 @@ function renderDisplay(array) {
 // limit characters in the number field - both for inputs and outputs ✅ outputs solved with scrolling
 // add decimals
 // more bug fixes - what happens when you hit two operators in a row?
+// equal saves into num1
 
 // POST only if inputs are ready ✅
 
-// create clear history button (DELETE request) 
+// create clear history button (DELETE request) ✅
 
 // arm entries on history list
+// format entries nicely

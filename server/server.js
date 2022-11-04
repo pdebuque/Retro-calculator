@@ -30,6 +30,12 @@ app.get('/calculate', (req, res) => {
 })
 
 
+app.delete('/calculate', (req, res) => {
+    console.log('DELETE request at /calculate');
+    calculations.splice(0, calculations.length);
+    res.sendStatus(200);
+})
+
 
 
 
