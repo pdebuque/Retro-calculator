@@ -1,15 +1,31 @@
 // take an input of a single number. Output should be 9 digits long, including decimal
 function truncate(number) {
     // turn it into an array of three elements: pre-decimal, decimal, and post-decimal
-    const numArray = String(number).split('.');
-
+    const firstNumArray = String(number).split('.');
+    let numArray;
+    if (firstNumArray.length = 2) {
+        numArray = [firstNumArray[0], '.', firstNumArray[1]];
+    } else {
+        numArray = firstNumArray;
+    }
     //if there is a decimal, truncate the decimals
-    while (totalLength(numArray) > 9 && numArray[2]) {
-        numArray[2].slice(0, numArray[2].length - 1);
-    };
+
+    // this made infinite loops
+    // while (totalLength(numArray) > 9 && numArray[2]) {
+    //     numArray[2].slice(0, numArray[2].length - 1);
+    // }; 
+
+    if (totalLength(numArray) > 9 && numArray[2]) {
+        const lengthLeft = 9 - (numArray[0].length + 1);
+        const pastDec = numArray[2];
+        numArray[2] = '';
+        for (let i = 0; i < lengthLeft; i++) {
+            numArray[2] += pastDec[i];
+        }
+    }
 
     // if there is only a decimal at the end, cut it off
-    if (totalLength(numArray) > 9 && numArray[1]) {
+    if (totalLength(numArray) > 9 && !numArray[2]) {
         numArray[1] = '';
     };
 
@@ -34,7 +50,7 @@ function totalLength(array) {
     for (let el of array) {
         sum += el.length;
     }
-    return sum
+    return sum;
 }
 
 // function to convert a string number into scientific notation
@@ -45,4 +61,4 @@ function sciNot(stringNum) {
     return newNumArr.join('');
 }
 
-export default truncate
+// module.exports = truncate; // couldn't make this available as an export for some reason

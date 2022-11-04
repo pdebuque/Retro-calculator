@@ -21,6 +21,7 @@ app.post('/calculate', (req, res) => {
         result: calculate(request.num1, request.num2, request.operation)
     };
     calculations.push(newCalc);
+    console.log(calculations);
     res.sendStatus(200)
 });
 

@@ -1,4 +1,13 @@
-import truncate from './truncate';
+// const truncate = require('./truncate');
+
+const calcState = {
+    num1: '',
+    num2: '',
+    operator: '',
+    inputField: ''
+}
+
+const operators = ['/', '*', '+', '-']
 
 $(document).ready(onReady)
 
@@ -15,14 +24,6 @@ function onReady() {
 // ------------------------------------------ CLIENT-SIDE CALC FUNCTIONALITY -------------------------------
 
 
-const calcState = {
-    num1: '',
-    num2: '',
-    operator: '',
-    inputField: ''
-}
-
-const operators = ['/', '*', '+', '-']
 // clicking a number concatenates its data onto the input field, then renders the input
 function clickNumber() {
     // after operator entry, need to clear the inputField
@@ -147,7 +148,7 @@ function getResult() {
         type: 'GET',
         url: '/calculate'
     }).then((res) => {
-        console.log('successfully received data');
+        console.log('successfully received data', res);
         //store the result as the new num1
         const resLast = res[res.length - 1];
         calcState.num1 = resLast.result;
@@ -161,6 +162,8 @@ function getResult() {
 
 function clearHistory() {
     console.log('in clearHistory()');
+    // clear the history
+    $('#history').empty();
     $.ajax({
         type: 'DELETE',
         url: 'calculate'
@@ -230,3 +233,4 @@ function renderDisplay(array) {
 // module to handle truncation, rounding, etc. of outputs. require it in client.js
 
 // 
+
