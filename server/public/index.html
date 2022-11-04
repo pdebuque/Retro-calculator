@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.1.js"></script>
     <script src="client.js"></script>
@@ -12,17 +16,78 @@
 </head>
 
 <body>
-    <input type="number" id="num1">
-    <button class="operator" data-operator="plus" id="plus">+</button>
-    <button class="operator" data-operator="minus" id="minus">-</button>
-    <button class="operator" data-operator="times" id="times">*</button>
-    <button class="operator" data-operator="divide" id="divide">/</button>
-    <input type="number" id="num2">
-    <button id="equal">=</button>
-    <button id="clear">clear</button>
+    <main id="all-content">
+        <section id="input-and-interface">
+            <div id="number-field"></div>
 
-    <section id="results"></section>
+            <section id="calc-interface">
 
+                <button id="clear">clear</button>
+                <button class="operator" data-symbol="/" data-operator="divide" id="divide">/</button>
+
+                <!-- --------- -->
+
+                <button class="number" data-val="7" id="seven">7</button>
+                <button class="number" data-val="8" id="eight">8</button>
+                <button class="number" data-val="9" id="nine">9</button>
+                <button class="operator" data-symbol="*" data-operator="times" id="times">*</button>
+
+                <!-- ----------- -->
+
+                <button class="number" data-val="4" id="four">4</button>
+                <button class="number" data-val="5" id="five">5</button>
+                <button class="number" data-val="6" id="six">6</button>
+                <button class="operator" data-symbol="-" data-operator="minus" id="minus">-</button>
+
+                <!-- -----------------  -->
+
+                <button class="number" data-val="1" id="one">1</button>
+                <button class="number" data-val="2" id="two">2</button>
+                <button class="number" data-val="3" id="three">3</button>
+                <button class="operator" data-symbol="+" data-operator="plus" id="plus">+</button>
+
+                <!-- ---------------- -->
+
+                <button class="number" data-val="0" id="zero">0</button>
+                <button id="equal">=</button>
+                <!-- <input type="number" id="num2">
+
+            <input type="number" id="num1"> -->
+            </section>
+        </section>
+
+
+        <section id="history-container">
+            <div id="history-header">
+                <h2>PAST OPERATIONS</h2> <button id="clear-history">clear history</button>
+            </div>
+            <div id="history">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni repellat fugit, ipsa delectus iure animi
+                numquam deleniti. Saepe aut consequatur eligendi non iste quam laborum. Doloremque, dignissimos
+                deserunt.
+                Harum, odit?
+                Maxime sapiente ratione repellat numquam veniam? Sapiente maxime sed deserunt exercitationem quasi.
+                Commodi
+                odio modi vero fugit, sit pariatur ex numquam illo veniam nesciunt facere eveniet in quas nihil ad!
+                Earum voluptates porro necessitatibus dolores voluptas quidem explicabo impedit est nemo molestias nisi
+                in
+                expedita aperiam, saepe rerum reiciendis sequi obcaecati. Fugiat inventore labore repellat, nobis aut
+                maiores ipsa blanditiis!
+                Incidunt fugiat a necessitatibus vero quis quia architecto, nemo vel praesentium hic quaerat libero
+                provident officia reprehenderit odit temporibus reiciendis iste ratione accusantium. Cupiditate saepe
+                tempora odio sint. Illo, est?
+                Necessitatibus nisi quam vitae porro voluptatum blanditiis, facilis suscipit ex voluptatibus. Sed iusto
+                praesentium dicta, soluta officiis itaque eum ipsam omnis odio id nostrum provident, ducimus eveniet
+                porro
+                earum asperiores?
+                Fuga fugit ex deleniti nesciunt molestiae corporis, reprehenderit harum similique at consectetur, ullam
+                nam
+                recusandae, voluptatum dolores accusantium! Id dolores libero nemo quis, atque deserunt sunt possimus
+                molestias inventore sed!
+
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

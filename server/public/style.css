@@ -1,0 +1,131 @@
+/* ----------- whole page ---------- */
+
+:root {
+    --main-font: 'Cousine', monospace;
+    --bg-color: rgb(1, 13, 102);
+}
+
+body {
+    background-color: rgb(88, 39, 39);
+    font-family: var(--main-font);
+}
+
+
+#all-content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+/* -------------------- calculator -------------------- */
+
+#input-and-interface {
+    padding: 10px;
+    border-radius: 8px;
+    width: 400px;
+    height: 570px;
+    background-color: rgb(148, 96, 0);
+    margin-left: 100px;
+}
+
+#calc-interface {
+    padding: 10px;
+    display: grid;
+    height: 420px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#number-field {
+    height: 90px;
+    padding: 20px;
+    font-size: 70px;
+    text-align: right;
+    vertical-align: bottom;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin: 0px 10px;
+
+}
+
+#calc-interface button {
+    background-color: var(--bg-color);
+    color: white;
+    font-size: 30px;
+    border: none;
+    border-radius: 20px;
+    margin: 2px;
+}
+
+#calc-interface button:hover {
+    background-color: rgb(3, 19, 134);
+    cursor: pointer
+}
+
+#calc-interface button:active {
+    transform: translate(0px, 2px);
+}
+
+#number-field {
+    background: rgb(204, 238, 253);
+    grid-column: 1/5;
+    overflow-x: scroll;
+}
+
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+#clear {
+    grid-column: 1/4;
+}
+
+#zero {
+    grid-column: 1/3;
+}
+
+#equal {
+    grid-column: 3/5;
+}
+
+
+
+
+/* --------------------- history ------------------------ */
+
+#history-container {
+    width: 40%;
+    background-color: aliceblue;
+    padding: 10px 20px;
+    overflow-y: scroll;
+
+}
+
+#history-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+#clear-history {
+    height: 30px;
+    border: none;
+    color: aliceblue;
+    background-color: black;
+    border-radius: 4px;
+}
+
+#clear-history:hover {
+    background-color: darkgray;
+    color: blue;
+    cursor: pointer;
+}
+
+#clear-history:active {
+    transform: translate(0px, 2px);
+}
