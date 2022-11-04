@@ -2,12 +2,12 @@
 
 :root {
     --main-font: 'Cousine', monospace;
-    --bg-color: rgb(1, 13, 102);
+    --bg-color: rgb(1, 80, 100);
     --calc-height: 570px
 }
 
 body {
-    background-color: rgb(88, 39, 39);
+    background-color: rgb(17, 25, 28);
     font-family: var(--main-font);
 }
 
@@ -24,12 +24,16 @@ body {
 /* -------------------- calculator -------------------- */
 
 #input-and-interface {
-    padding: 10px;
+    padding: 20px;
     border-radius: 8px;
     width: 400px;
-    height: var(--calc-height);
-    background-color: rgb(148, 96, 0);
+    height: calc(var(--calc-height) - 20px);
+    background-color: rgb(153, 172, 176);
     margin-left: 100px;
+    margin-right: 20px;
+    box-shadow: 4px 4px 5px rgb(48, 73, 157);
+    border-bottom: 20px solid darkred;
+    /* box-sizing: border-box; */
 }
 
 #calc-interface {
@@ -55,14 +59,21 @@ body {
     background-color: var(--bg-color);
     color: white;
     font-size: 30px;
-    border: none;
-    border-radius: 20px;
-    margin: 2px;
+    /* border: none; */
+    border-top: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 4px;
+    margin: 6px;
+    font-family: var(--main-font)
 }
 
 #calc-interface button:hover {
-    background-color: rgb(3, 19, 134);
-    cursor: pointer
+    background-color: rgb(189, 240, 253);
+    color: rgb(1, 80, 100);
+    transition: all 0.07s ease-out;
+    cursor: pointer;
 }
 
 #calc-interface button:active {
@@ -75,20 +86,33 @@ body {
     overflow-x: scroll;
 }
 
-.example::-webkit-scrollbar {
+#all-content::-webkit-scrollbar {
     display: none;
 }
 
-#clear {
+#calc-interface #clear {
     grid-column: 1/4;
+    background-color: darkred
+}
+
+#calc-interface #clear:hover,
+#calc-interface #equal:hover {
+    background-color: white;
+    color: darkred;
+
 }
 
 #zero {
     grid-column: 1/3;
 }
 
-#equal {
-    grid-column: 3/5;
+#calc-interface #equal {
+    grid-column: 4/5;
+    background-color: darkred;
+}
+
+#calc-interface .operator {
+    background-color: rgb(79, 90, 101);
 }
 
 
@@ -99,27 +123,36 @@ body {
 #history-container {
     width: 40%;
     height: var(--calc-height);
-    background-color: aliceblue;
-    padding: 10px 20px;
-    overflow-y: scroll;
-    margin-right: 100px;
+    background-color: rgb(247, 251, 197);
+    padding: 0px;
 
+    margin-right: 100px;
+    margin-left: 20px;
+    border-radius: 10px;
 }
 
 #history-header {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-
+    margin-left: 0px;
+    padding: 10px 30px;
+    margin-right: 0px;
+    color: rgb(17, 25, 28);
+    background-color: darkred;
+    color: white;
+    border-bottom: 6px solid rgb(153, 172, 176);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #clear-history {
     height: 30px;
     border: none;
     color: aliceblue;
-    background-color: black;
+    background-color: rgb(17, 25, 28);
     border-radius: 4px;
 }
 
@@ -133,6 +166,48 @@ body {
     transform: translate(0px, 2px);
 }
 
+#history {
+    padding: 10px;
+    height: 440px;
+    overflow-y: scroll;
+}
+
+.rerun-btn {
+    display: flex;
+
+}
+
+.rerun-btn:hover {
+    cursor: pointer;
+}
+
+.operation-container {
+    padding: 4px 20px 4px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(88, 93, 98, 0.384);
+}
+
+.operation-container:first-child {
+    background-color: darkred !important;
+    color: white;
+}
+
+/* 
+.operation-container:nth-child(odd) {
+    background-color: rgb(240, 240, 240);
+}
+
+.operation-container:nth-child(even) {
+    background-color: rgb(208, 208, 208);
+} */
+
 .rerun-btn-img {
+
     height: 15px;
+    margin-right: 10px;
+
 }

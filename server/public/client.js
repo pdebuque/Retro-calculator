@@ -100,7 +100,7 @@ function clear() {
 // upon clicking equal, save the inputfield as num2, clear the results input, make the POST request
 function postEqual(state) {
     // get values
-    // error validation: only post if num1 and num2 exist
+    // error validation: only post if num1 and num2 exist. NEXT: USE REGEX TO MAKE SURE NUMS ARE NUMS
     if (!calcState.num1 || !calcState.num2) {
         calcState.inputField = 'ERROR';
         renderInput();
@@ -175,14 +175,15 @@ function renderDisplay(array) {
 
 
         for (let calculation of array) {
-            $('#history').append(`
+            $('#history').prepend(`
         <div class="operation-container">
-            <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operation = ${calculation.operation} class = "rerun-btn">
-                <img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon">
-            </button>
+            
             <span class = "past-operation">
                 ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${calculation.result}
             </span>
+            <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operation = ${calculation.operation} class = "rerun-btn">
+                <img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon"> rerun operation
+            </button>
         </div>    
             `);
         }
@@ -196,12 +197,19 @@ function renderDisplay(array) {
 // CONVERT INTERFACE
 // limit characters in the number field - both for inputs and outputs ✅ outputs solved with scrolling
 // add decimals
-// more bug fixes - what happens when you hit two operators in a row?
+// more bug fixes - what happens when you hit two operators in a row? num1 and num2 regex
 // equal saves into num1
 
 // POST only if inputs are ready ✅
 
 // create clear history button (DELETE request) ✅
 
-// arm entries on history list
-// format entries nicely
+// arm entries on history list ✅
+// format entries nicely ✅
+
+// styling
+// change colors on certain buttons
+
+// module to handle truncation, rounding, etc. of outputs. require it in client.js
+
+// 
