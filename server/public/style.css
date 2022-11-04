@@ -3,6 +3,7 @@
 :root {
     --main-font: 'Cousine', monospace;
     --bg-color: rgb(1, 13, 102);
+    --calc-height: 570px
 }
 
 body {
@@ -26,7 +27,7 @@ body {
     padding: 10px;
     border-radius: 8px;
     width: 400px;
-    height: 570px;
+    height: var(--calc-height);
     background-color: rgb(148, 96, 0);
     margin-left: 100px;
 }
@@ -97,9 +98,11 @@ body {
 
 #history-container {
     width: 40%;
+    height: var(--calc-height);
     background-color: aliceblue;
     padding: 10px 20px;
     overflow-y: scroll;
+    margin-right: 100px;
 
 }
 

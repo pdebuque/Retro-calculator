@@ -8,14 +8,7 @@ function onReady() {
     $('#equal').on('click', clickEqual);
     $('#clear').on('click', clear);
     $('#clear-history').on('click', clearHistory);
-    $('#history').on('click', '.rerun-btn', () => {
-        postEqual({
-            num1: ,
-            num2: ,
-            operatior: ,
-            inputField: ''
-        })
-    })
+    $('#history').on('click', '.rerun-btn', historyRerun)
 }
 
 // ------------------------------------------ CLIENT-SIDE CALC FUNCTIONALITY -------------------------------
@@ -67,19 +60,27 @@ function clickEqual() {
     postEqual(calcState);
 }
 
-// create a state equal to the corresponding values, then run postEqual
+// create a state equal to the corresponding values using the data in the dom, then run postEqual
 function historyRerun() {
     console.log('in historyRerun()');
-    const historyText = $(this).next.text();
-    console.log('corresponding text: ', historyText)
+
+    const historyData = $(this).data();
+
+    // console.log($(this).next());
+    // const historyText = $(this).next().text();
+    // console.log('corresponding text: ', historyText)
+
+    // const historyTextArray = historyText.split(' ').filter(element => {
+    //     return element !== '';
+    // });
+    // console.log(historyTextArray);
 
     const historyState = {
-        num1: '',
-        num2: '',
-        operator: '',
-        inputField: 
-}
-
+        num1: historyData.num1,
+        num2: historyData.num2,
+        operator: historyData.operation,
+        inputField: calcState.inputField
+    }
 
     postEqual(historyState);
 }
@@ -175,10 +176,12 @@ function renderDisplay(array) {
 
         for (let calculation of array) {
             $('#history').append(`
-        <div class="operation-container>
-            <button class = "rerun-btn"><img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon"></button>
+        <div class="operation-container">
+            <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operation = ${calculation.operation} class = "rerun-btn">
+                <img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon">
+            </button>
             <span class = "past-operation">
-            ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${calculation.result}
+                ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${calculation.result}
             </span>
         </div>    
             `);
