@@ -1,5 +1,6 @@
-$(document).ready(onReady)
+import truncate from './truncate';
 
+$(document).ready(onReady)
 
 function onReady() {
     console.log('jquery ready');
@@ -13,6 +14,7 @@ function onReady() {
 
 // ------------------------------------------ CLIENT-SIDE CALC FUNCTIONALITY -------------------------------
 
+
 const calcState = {
     num1: '',
     num2: '',
@@ -24,13 +26,12 @@ const operators = ['/', '*', '+', '-']
 // clicking a number concatenates its data onto the input field, then renders the input
 function clickNumber() {
     // after operator entry, need to clear the inputField
-
     if (operators.includes(calcState.inputField)) {// this is hacky. i'd like to find a different way
         calcState.inputField = '';
         renderInput()
     }
 
-    if (calcState.inputField.length < 8) {
+    if (calcState.inputField.length < 9) {
         calcState.inputField += $(this).data().val;
         console.log(calcState.inputField)
         renderInput();
@@ -44,7 +45,9 @@ function renderInput() {
 
 // upon clicking an operator, save the inputfield as num1, clear the results input, replace with the operation at hand, 
 function setOperator() {
-    calcState.num1 = calcState.inputField;
+    if (!calcState.num1) {
+        calcState.num1 = calcState.inputField;
+    }
     calcState.inputField = $(this).data().symbol;
     calcState.operator = $(this).data().operator;
     renderInput();
@@ -53,6 +56,9 @@ function setOperator() {
 function clickEqual() {
     // save inputField as num2 and clear inputField
     calcState.num2 = calcState.inputField;
+
+
+
     calcState.inputField = ''
     console.log('sending operation: ', calcState)
     renderInput()
@@ -127,6 +133,8 @@ function postEqual(state) {
         // clear inputs
         $('#num1').val('');
         $('#num2').val('');
+
+
     }
     // set all state values to default
 }
@@ -140,7 +148,11 @@ function getResult() {
         url: '/calculate'
     }).then((res) => {
         console.log('successfully received data');
+        //store the result as the new num1
+        const resLast = res[res.length - 1];
+        calcState.num1 = resLast.result;
         renderDisplay(res);
+
     }).catch((err) => {
         console.log('getResult went wrong: ', err);
     })
@@ -171,7 +183,7 @@ function clearHistory() {
 function renderDisplay(array) {
     $('#history').empty();
     if (array.length) {
-        $('#number-field').html(array[array.length - 1].result);
+        $('#number-field').html(truncate(array[array.length - 1].result));
 
 
         for (let calculation of array) {
@@ -179,7 +191,7 @@ function renderDisplay(array) {
         <div class="operation-container">
             
             <span class = "past-operation">
-                ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${calculation.result}
+                ${calculation.num1} ${calculation.operation} ${calculation.num2} = ${truncate(calculation.result)}
             </span>
             <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operation = ${calculation.operation} class = "rerun-btn">
                 <img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon"> rerun operation
@@ -195,20 +207,25 @@ function renderDisplay(array) {
 // STRETCH
 
 // CONVERT INTERFACE
-// limit characters in the number field - both for inputs and outputs ✅ outputs solved with scrolling
-// add decimals
+//✅ limit characters in the number field - both for inputs and outputs  outputs solved with scrolling
+//✅ add decimals
 // more bug fixes - what happens when you hit two operators in a row? num1 and num2 regex
-// equal saves into num1
+//✅ equal saves into num1
+// display running operation under main display
 
-// POST only if inputs are ready ✅
 
-// create clear history button (DELETE request) ✅
+//✅ POST only if inputs are ready 
 
-// arm entries on history list ✅
-// format entries nicely ✅
+//✅ create clear history button (DELETE request)
+
+//✅ arm entries on history list 
+//✅ format entries nicely 
 
 // styling
-// change colors on certain buttons
+//✅ change colors on certain buttons
+// refactor colors into :root
+// make fonts work
+
 
 // module to handle truncation, rounding, etc. of outputs. require it in client.js
 
