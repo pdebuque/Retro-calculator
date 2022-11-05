@@ -204,6 +204,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 2px;
+    overflow-x: scroll;
 
     border-bottom: 1px solid rgba(88, 93, 98, 0.384);
 }

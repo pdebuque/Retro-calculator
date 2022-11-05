@@ -29,8 +29,8 @@ function onReady() {
 // new click number handles both num1 and num2 saving
 function clickNumber() {
     // handle for num1
-    console.log('---------- in clickNumber() ------------');
-    console.log('current state: ', state);
+    // console.log('---------- in clickNumber() ------------');
+    // console.log('current state: ', state);
     if (!state.operator) {
         state.num1 += $(this).data().val;
         state.operation = state.num1;
@@ -73,8 +73,8 @@ function clickNumber() {
 function clickOperator() {
 
     // if this is the first operation, do the following. if it is not [aka num1, num2, and operator already exist], first set some 
-    console.log('in clickOperator()')
-    console.log('current state: ', state);
+    // console.log('in clickOperator()')
+    // console.log('current state: ', state);
     if (!state.num2) {
         console.log('beginning first operation');
         console.log(state);
@@ -153,9 +153,11 @@ function rerunOperation() {
     const historyState = {
         num1: historyData.num1,
         num2: historyData.num2,
-        operator: historyData.operation,
-        inputField: calcState.inputField
+        operator: historyData.operator
+        // display: state.display
     }
+
+    state.operation = historyState.num1 + historyState.operator + historyState.num2;
 
     postEqual(historyState);
 }
@@ -259,9 +261,11 @@ function clearHistory() {
 // }
 
 function renderHistory(array) {
+    console.log('renderHistory array: ', array)
     $('#history').empty();
     if (array.length) {
-        $('#number-field').html(truncate(array[array.length - 1].result));
+        console.log(truncate(array[array.length - 1].result));
+        $('large-display').html(truncate(array[array.length - 1].result));
 
 
         for (let calculation of array) {
@@ -270,7 +274,7 @@ function renderHistory(array) {
             <span class = "past-operation">
                 ${calculation.num1} ${calculation.operator} ${calculation.num2} = ${truncate(calculation.result)}
             </span>
-            <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operation = ${calculation.operator} class = "rerun-btn">
+            <button data-num1=${calculation.num1} data-num2 = ${calculation.num2} data-operator = ${calculation.operator} class = "rerun-btn">
                 <img class = "rerun-btn-img" src="rerun-icon.png" alt="rerun icon"> rerun operation
             </button>
         </div>    
