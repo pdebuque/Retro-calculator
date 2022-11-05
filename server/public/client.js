@@ -33,7 +33,7 @@ function clickNumber() {
 
     } else { // if operator has been set, click number updates num2
         state.num2 += $(this).data().val;
-        state.operation += state.num2;
+        state.operation += $(this).data().val;
         state.display = state.num2;
         renderDisplays();
     }

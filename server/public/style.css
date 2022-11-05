@@ -5,13 +5,14 @@
     --dusky-teal: rgb(1, 80, 100);
     --dark-red: rgb(139, 0, 0);
     --light-grey: rgb(153, 172, 176);
-    --deep-blue: rgb(17, 25, 28);
+    --deep-blue: rgb(8, 9, 24);
     --teal: rgb(204, 238, 253);
     --calc-height: 570px;
 }
 
 body {
-    background-color: rgb(17, 25, 28);
+    background-color: var(--deep-blue);
+    background-image: url("https://transparenttextures.com/patterns/axiom-pattern.png");
     font-family: var(--main-font);
 }
 
@@ -36,7 +37,6 @@ body {
     background-color: rgb(153, 172, 176);
     margin-left: 100px;
     margin-right: 20px;
-    box-shadow: 4px 4px 5px rgb(48, 73, 157);
     border-bottom: 20px solid rgb(139, 0, 0);
     /* box-sizing: border-box; */
 }
