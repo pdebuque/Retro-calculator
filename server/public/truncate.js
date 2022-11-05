@@ -2,15 +2,18 @@
 function truncate(number) {
     // turn it into an array of three elements: pre-decimal, decimal, and post-decimal
     const firstNumArray = String(number).split('.');
+    // console.log('firstNumArray: ', firstNumArray, 'length: ', firstNumArray.length)
     let numArray;
-    if (firstNumArray.length = 2) {
+    if (firstNumArray.length === 2) { // if there was a decimal, it will have length 2, if not only length 1
         numArray = [firstNumArray[0], '.', firstNumArray[1]];
+        // console.log('numArray: ', numArray)
     } else {
         numArray = firstNumArray;
+        // console.log('numArray: ', numArray)
     }
     //if there is a decimal, truncate the decimals
 
-    // this made infinite loops
+    // this made infinite loops with repeated decimals
     // while (totalLength(numArray) > 9 && numArray[2]) {
     //     numArray[2].slice(0, numArray[2].length - 1);
     // }; 
@@ -25,7 +28,7 @@ function truncate(number) {
     }
 
     // if there is only a decimal at the end, cut it off
-    if (totalLength(numArray) > 9 && !numArray[2]) {
+    if (totalLength(numArray) > 9 && !numArray[2] && numArray[1]) {
         numArray[1] = '';
     };
 
@@ -48,6 +51,7 @@ function truncate(number) {
 function totalLength(array) {
     let sum = 0;
     for (let el of array) {
+        // console.log(el);
         sum += el.length;
     }
     return sum;

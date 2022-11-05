@@ -7,7 +7,7 @@ const calcState = {
     inputField: ''
 }
 
-const operators = ['/', '*', '+', '-']
+const operators = ['/', '*', '+', '-', '×', '÷']
 
 $(document).ready(onReady)
 
@@ -42,6 +42,11 @@ function clickNumber() {
 function renderInput() {
     $('#number-field').empty();
     $('#number-field').html(calcState.inputField);
+
+    $('#small-field').empty();
+    $('#small-field').html(`
+        ${calcState.num1} ${calcState.operator} ${calcState.num2}
+    `)
 }
 
 // upon clicking an operator, save the inputfield as num1, clear the results input, replace with the operation at hand, 
@@ -49,7 +54,7 @@ function setOperator() {
     if (!calcState.num1) {
         calcState.num1 = calcState.inputField;
     }
-    calcState.inputField = $(this).data().symbol;
+    calcState.inputField = $(this).data().operator;
     calcState.operator = $(this).data().operator;
     renderInput();
 }
@@ -57,9 +62,6 @@ function setOperator() {
 function clickEqual() {
     // save inputField as num2 and clear inputField
     calcState.num2 = calcState.inputField;
-
-
-
     calcState.inputField = ''
     console.log('sending operation: ', calcState)
     renderInput()
@@ -150,8 +152,8 @@ function getResult() {
     }).then((res) => {
         console.log('successfully received data', res);
         //store the result as the new num1
-        const resLast = res[res.length - 1];
-        calcState.num1 = resLast.result;
+        const prevResult = res[res.length - 1];
+        calcState.num1 = prevResult.result;
         renderDisplay(res);
 
     }).catch((err) => {
@@ -215,6 +217,8 @@ function renderDisplay(array) {
 // more bug fixes - what happens when you hit two operators in a row? num1 and num2 regex
 //✅ equal saves into num1
 // display running operation under main display
+//✅ change history to show operations, not 'minus', 'times', etc.
+// media query: small screen puts past operations beneath
 
 
 //✅ POST only if inputs are ready 
@@ -227,10 +231,12 @@ function renderDisplay(array) {
 // styling
 //✅ change colors on certain buttons
 // refactor colors into :root
-// make fonts work
+//✅ make fonts work
+//✅ clear history button, rerun operation button pretty
 
 
-// module to handle truncation, rounding, etc. of outputs. require it in client.js
+
+//✅ module to handle truncation, rounding, etc. of outputs. require it in client.js
 
 // 
 

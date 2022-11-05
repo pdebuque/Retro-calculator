@@ -1,16 +1,16 @@
 function calculate(num1, num2, operator) {
 
     switch (operator) {
-        case 'plus':
+        case '+':
             return Number(num1) + Number(num2);
             break;
-        case 'minus':
+        case '-':
             return Number(num1) - Number(num2);
             break;
-        case 'times':
+        case '×':
             return Number(num1) * Number(num2);
             break;
-        case 'divide':
+        case '÷':
             return Number(num1) / Number(num2);
             break;
     }
