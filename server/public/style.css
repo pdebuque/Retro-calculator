@@ -32,7 +32,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     width: 400px;
-    height: calc(var(--calc-height) - 20px);
+    height: calc(var(--calc-height) - 10px);
     background-color: rgb(153, 172, 176);
     margin-left: 100px;
     margin-right: 20px;
@@ -48,7 +48,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
 }
 
-#number-field {
+#large-display {
     height: 60px;
     padding: 20px;
     font-size: 60px;
@@ -66,13 +66,14 @@ body {
     display: none;
 }
 
-#small-field {
+#small-display {
     height: 24px;
     background: rgb(204, 238, 253);
     margin: 0px 10px;
     border-top: 1px solid darkgrey;
     text-align: right;
     padding: 10px 10px 0px 0px;
+    overflow-x: scroll;
 }
 
 #calc-interface button {
@@ -233,6 +234,16 @@ body {
 
 /* ------------- media queries ----------- */
 
+@media (width>1500px) {
+    #input-and-interface {
+        margin-right: 0px;
+    }
+
+    #history-container {
+        margin-left: 0px;
+
+    }
+}
 
 @media (width<1200px) {
     #all-content {

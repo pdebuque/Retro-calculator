@@ -10,6 +10,7 @@ app.use(express.static('server/public'));
 const calculations = [];
 
 const calculate = require('./modules/calculator');
+const truncate = require('./modules/truncate')
 
 app.post('/calculate', (req, res) => {
     console.log('receiving an operation: ', req.body)
@@ -17,8 +18,8 @@ app.post('/calculate', (req, res) => {
     const newCalc = {
         num1: request.num1,
         num2: request.num2,
-        operation: request.operation,
-        result: calculate(request.num1, request.num2, request.operation)
+        operator: request.operator,
+        result: truncate(calculate(request.num1, request.num2, request.operator))
     };
     calculations.push(newCalc);
     console.log(calculations);
