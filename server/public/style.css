@@ -16,16 +16,12 @@ body {
     font-family: var(--main-font);
 }
 
-
 #all-content {
     margin-top: 100px;
     display: flex;
     justify-content: space-around;
     font-family: 'Cousine', monospace;
 }
-
-
-
 
 /* -------------------- calculator -------------------- */
 
@@ -101,8 +97,6 @@ body {
     transform: translate(0px, 2px);
 }
 
-
-
 #calc-interface #clear {
     grid-column: 1/4;
     background-color: darkred
@@ -127,9 +121,6 @@ body {
 #calc-interface .operator {
     background-color: rgb(79, 90, 101);
 }
-
-
-
 
 /* --------------------- history ------------------------ */
 
