@@ -58,7 +58,7 @@ body {
     overflow-x: scroll;
 }
 
-#all-content::-webkit-scrollbar {
+#large-display::-webkit-scrollbar {
     display: none;
 }
 
@@ -70,6 +70,10 @@ body {
     text-align: right;
     padding: 10px 10px 0px 0px;
     overflow-x: scroll;
+}
+
+#small-display::-webkit-scrollbar {
+    display: none;
 }
 
 #calc-interface button {
@@ -180,6 +184,10 @@ body {
     overflow-y: scroll;
 }
 
+#history::-webkit-scrollbar {
+    display: none;
+}
+
 .rerun-btn {
     display: flex;
     font-family: var(--main-font);
@@ -196,8 +204,11 @@ body {
     align-items: center;
     margin: 2px;
     overflow-x: scroll;
-
     border-bottom: 1px solid rgba(88, 93, 98, 0.384);
+}
+
+.operation-container::-webkit-scrollbar {
+    display: none;
 }
 
 .operation-container:first-child {
