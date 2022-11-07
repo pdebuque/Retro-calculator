@@ -39,5 +39,5 @@ app.delete('/calculate', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`listening at port `, port)
+    console.log(`listening at port `, PORT)
 })
