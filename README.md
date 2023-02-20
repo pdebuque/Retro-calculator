@@ -1,7 +1,7 @@
 # Server-side calculator
 
 <div align="center">
-<img src="./readme-images/full-screenshot.png" height="500" style="margin-right: 20px" />
+<img src="./readme-images/full-screenshot.png" style="margin-right: 20px" />
 </div>
 
 ## Description
