@@ -1,5 +1,9 @@
 # Server-side calculator
 
+<div align="center">
+<img src="./readme-images/full-screenshot.png" height="500" style="margin-right: 20px" />
+</div>
+
 ## Description
 
 This project originated as the second weekend assignment at Prime Digital Academy. The base goals (required features) were to:
@@ -25,6 +29,8 @@ In addition to these base and stretch goals, I added the following:
     * all buttons responsive to :hover and :active
     * media queries to adjust layout according to screen size
 
+To see this app deployed, visit https://retro-calculator.herokuapp.com/
+
 ## Built With
 
 * Node.js
@@ -32,7 +38,7 @@ In addition to these base and stretch goals, I added the following:
 * jquery
 * nodemon (dev dependency)
 
-## Acknowldedgement 
+## Acknowledgement
 
 Thanks to Prime Digital Academy who equipped and helped me to make this application.
 
