@@ -10,7 +10,7 @@ const state = {
 $(onReady);
 
 function onReady() {
-    // getResults();
+    getResults();
     console.log('jquery ready');
     $('.number').on('click', clickNumber);
     $('.operator').on('click', clickOperator);
